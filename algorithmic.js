@@ -1,7 +1,11 @@
-let x = {};
+let x;
 
-x.a = 'RJTT'
-x.b = 'KSFO'
+x.set = function (c) {
+  if (typeof c == 'string') {
+    let d = c.toUpperCase()
+    return d
+  }
+}
 
 x.fetchAirports = async function getData() {
   const url = "https://www.geo-fs.com/data/airports.js";
@@ -10,19 +14,15 @@ x.fetchAirports = async function getData() {
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-    
-    x.text = await eval(response.text());
-
+    x = {};
+    x.a = 'RJTT'
+    x.b = 'KSFO'
+    x.text = await response.text();
+    x.text = eval(x.text)
   } catch (error) {
     console.error(JSON.stringify(error.message));
   }
 };
-x.fetchAirports();
-
-x.set = function (a) {
-  let b = a.toUpperCase()
-  return x.text.b
-}
 
 function toRadians(degrees) {
     return degrees * (Math.PI / 180);
