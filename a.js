@@ -2,9 +2,6 @@ let x = {
   set: function (c) {
     if (typeof c == 'string') {
       let d = c.toUpperCase();
-      if (d === 'RJTT') return [35.5523, 139.7798]; // Tokyo Haneda Airport
-      if (d === 'KSFO') return [37.7749, -122.4194]; // San Francisco International Airport
-      return [0, 0]; // Default coordinates
     }
   }
 };
@@ -17,12 +14,12 @@ x.fetchAirports = async function getData() {
       throw new Error(`Response status: ${response.status}`);
     }
     x.text = await response.text();
-    eval(x.text); // Be cautious with eval
+    x.text = eval(x.text);
   } catch (error) {
     console.error(JSON.stringify(error.message));
   }
 };
-
+x.fetchAirports();
 function toRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
@@ -51,8 +48,8 @@ function haversineDistance(coord1, coord2) {
 async function main() {
   await x.fetchAirports();
 
-  const coord1 = { lat: x.set('RJTT')[0], lon: x.set('RJTT')[1] };
-  const coord2 = { lat: x.set('KSFO')[0], lon: x.set('KSFO')[1] };
+  const coord1 = { lat: x.text.'KSFO'[0], lon: x.text.'KSFO'[1] };
+  const coord2 = { lat: x.text.'RJTT'[0], lon: x.text.'RJTT'[1] };
 
   const distance = haversineDistance(coord1, coord2);
   console.log(`Distance: ${distance} km`);
