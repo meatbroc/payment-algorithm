@@ -7,6 +7,8 @@ let x = {
   }
 };
 
+let userType = 'Cargo'
+let profit = 100000
 let airport1 = 'KSFO'
 let airport2 = 'RJTT'
 
@@ -31,7 +33,7 @@ async function main() {
   const coord2 = { lat: x.text[airport2][0], lon: x.text[airport2][1] };
 
   const distance = haversineDistance(coord1, coord2);
-  console.log(`Distance: ${distance} miles`);
+  console.log(`${distance}`);
 }
 
 function toRadians(degrees) {
@@ -55,9 +57,27 @@ function haversineDistance(coord1, coord2) {
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
+    function calc () {
+      switch (userType) {
+        case 'Cargo':
+          return profit * 0.4
+          break;
+        case 'Qualified':
+          return profit * 0.3
+          break;
+        case 'Regular':
+          return profit * 0.2
+          break;
+        default:
+          return `${userType} is not a valid type`
+          break;
+      }
+    }
+
     const distance = R * c;
     const miles = distance * 0.621371
-    return miles;
+    const payment = calc();
+    return `Distance is ${miles} and payment is ${payment}`;
 }
 
 main();
