@@ -8,7 +8,8 @@ let x = {
 };
 
 let userType = 'Cargo'
-let profit = 100000
+let mins = 100
+let profit = (2900000 * mins)/1000
 let airport1 = 'KSFO'
 let airport2 = 'RJTT'
 
