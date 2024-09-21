@@ -7,6 +7,8 @@ let x = {
   }
 };
 
+// userType, mins, profit, airport1, and airport2 are values the bot should obtain
+
 let userType = 'Cargo'
 let mins = 100
 let profit = (2900000 * mins)/1000
