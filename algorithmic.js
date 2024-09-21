@@ -11,7 +11,7 @@ let x = {
 
 let userType = 'Cargo'
 let mins = 100
-let profit = (2900000 * mins)/1000
+// let profit = (2900000 * mins)/1000
 let airport1 = 'KSFO'
 let airport2 = 'RJTT'
 
@@ -79,6 +79,8 @@ function haversineDistance(coord1, coord2) {
 
     const distance = R * c;
     const miles = distance * 0.621371
+    const mins = (miles / 528) * 60 
+    const profit = (2900000 * mins)/1000
     const payment = calc();
     return `Distance is ${miles} and payment is ${payment}`;
 }
